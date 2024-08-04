@@ -4,8 +4,8 @@ use crate::utils::{base58_decode, base58_encode};
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct TXOutput {
-    value: i32,
-    pub_key_hash: Vec<u8>,
+    pub value: i32,
+    pub pub_key_hash: Vec<u8>,
 }
 
 impl TXOutput {

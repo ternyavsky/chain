@@ -26,6 +26,9 @@ impl Block {
     pub fn get_hash_bytes(&self) -> Vec<u8> {
         self.hash.as_bytes().to_vec()
     }
+    pub fn get_pre_block_hash(&self) -> String {
+        self.previous_hash.clone()
+    }
     pub fn get_transactions_hash(&self) -> Vec<u8> {
         let mut hashs = Vec::new();
         for tx in &self.transactions {
@@ -33,6 +36,7 @@ impl Block {
         }
         sha256_digest(hashs.as_slice())
     }
+
     pub fn create_genesis_block(tx: &Transaction) -> Block {
         let transactions = vec![tx.clone()];
         Block::new_block(String::from("None"), &transactions, 0)
