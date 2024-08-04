@@ -1,7 +1,6 @@
 use std::{borrow::Borrow, i64, ops::ShlAssign};
 
 use num_bigint::{BigInt, Sign};
-use sha256::digest;
 
 use crate::block::Block;
 
@@ -38,7 +37,7 @@ impl ProofOfWork {
     }
     fn prepare_data(&self, nonce: i64) -> Vec<u8> {
         // let previous_hash = self.block.g
-        let mut data_bytes = Vec::new();
-        data_bytes
+        
+        Vec::new()
     }
 }

@@ -1,7 +1,7 @@
 mod block;
 mod blockchain;
-mod transactions;
 mod pow;
+mod transactions;
 mod utils;
 
 fn main() {}

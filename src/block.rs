@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use sled::IVec;
 
 use crate::{pow::ProofOfWork, transactions::transaction::Transaction, utils::sha256_digest};
 
@@ -32,6 +33,10 @@ impl Block {
         }
         sha256_digest(hashs.as_slice())
     }
+    pub fn create_genesis_block(tx: &Transaction) -> Block {
+        let transactions = vec![tx.clone()];
+        Block::new_block(String::from("None"), &transactions, 0)
+    }
     pub fn new_block(previous_hash: String, transactions: &[Transaction], height: usize) -> Block {
         let mut block = Block {
             timestamp: chrono::Utc::now().timestamp(),
@@ -53,5 +58,12 @@ impl Block {
 
     pub fn deserialize(bytes: &[u8]) -> Block {
         bincode::deserialize(bytes).unwrap()
+    }
+}
+
+impl From<Block> for IVec {
+    fn from(value: Block) -> Self {
+        let bytes = bincode::serialize(&value).unwrap();
+        Self::from(bytes)
     }
 }
